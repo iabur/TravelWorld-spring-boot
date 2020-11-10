@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
     @GetMapping("/test")
     public String testf(){
-        return "/index";
+        return "/register";
     }
 }
