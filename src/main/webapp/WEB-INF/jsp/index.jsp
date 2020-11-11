@@ -46,6 +46,9 @@
                                                 <div class="float-right">
                                                   <button class="btn"><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></button>
                                                 </div>
+                                                <div class="float-right">
+                                                    <button class="btn"><a href="abc"><i class="fas fa-map-pin"></i></a></button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-1">

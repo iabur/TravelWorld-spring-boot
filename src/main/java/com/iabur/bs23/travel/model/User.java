@@ -3,6 +3,7 @@ package com.iabur.bs23.travel.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_user")
@@ -17,12 +18,14 @@ public class User implements Serializable {
     private String password;
     @Column(name = "logo", nullable = true)
     private String logo;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
     @Column(name = "Age")
     private int Age;
     @Column(name = "DOB")
     private Date DOB;
+    @OneToMany(mappedBy="user")
+    private List<Post> postList;
 
     public long getUserId() {
         return userId;
@@ -78,5 +81,13 @@ public class User implements Serializable {
 
     public void setDOB(Date DOB) {
         this.DOB = DOB;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
     }
 }
