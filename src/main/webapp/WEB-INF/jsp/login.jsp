@@ -28,7 +28,7 @@
                                     <h4 class="text-dark mb-4">Welcome To <span class="font-weight-bold">TRAVEL WORLD</span></h4>
                                 </div>
                                 <form class="user" action="${pageContext.request.contextPath}/login-processing", method="post">
-                                    <div class="form-group"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter UserName..." name="username"></div>
+                                    <div class="form-group"><input class="form-control form-control-user" type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email..." name="username"></div>
                                     <div class="form-group"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
                                     <div class="form-group">
 
@@ -39,7 +39,7 @@
                                         </c:if>
                                     </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Login</button>
                                     <hr>
-                                    <a href="/register">Need an account? Sign up!</a>
+                                    <a href="/registration">Need an account? Sign up!</a>
                                     <hr>
                                 </form>
                                 <div class="text-center"></div>

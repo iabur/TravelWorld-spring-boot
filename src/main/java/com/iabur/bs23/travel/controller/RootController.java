@@ -36,9 +36,9 @@ public class RootController {
     }
 
     private void generateUsers() {
-        if (userRepository.findByUsername("admin").isEmpty()) {
+        if (userRepository.findByEmail("admin@admin.com").isEmpty()) {
             var user = new User();
-            user.setUsername("admin");
+            user.setEmail("admin@admin.com");
             user.setPassword(bCryptPasswordEncoder.encode("secret"));
             userRepository.save(user);
         }

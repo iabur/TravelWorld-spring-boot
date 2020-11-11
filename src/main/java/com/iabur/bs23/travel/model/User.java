@@ -12,8 +12,6 @@ public class User implements Serializable {
     @Column(name = "id")
     private long userId;
     @Column(name = "username")
-    private String username;
-    @Column(name = "Name")
     private String Name;
     @Column(name = "password", length = 512)
     private String password;
@@ -32,14 +30,6 @@ public class User implements Serializable {
 
     public void setUserId(long userId) {
         this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getName() {

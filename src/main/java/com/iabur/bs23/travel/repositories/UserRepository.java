@@ -12,7 +12,5 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
-
-    Page<User> findByUsernameContaining(String username, Pageable pageable);
+    Optional<User> findByEmail(String email);
 }
