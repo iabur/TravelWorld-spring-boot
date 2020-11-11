@@ -48,6 +48,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.ocpsoft.prettytime/prettytime -->
+        <dependency>
+            <groupId>org.ocpsoft.prettytime</groupId>
+            <artifactId>prettytime</artifactId>
+            <version>3.2.7.Final</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

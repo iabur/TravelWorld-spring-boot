@@ -1,36 +1,15 @@
-package com.iabur.bs23.travel.model;
+package com.iabur.bs23.travel.dto;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "tbl_post")
-public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id")
+public class PostDto {
     private Long postId;
-
-    @Column(name = "postBody")
     private String postBody;
-
-    @Column(name = "postTime")
-    private LocalDateTime postTime;
-
-    @Column(name = "postLocation")
     private String postLocation;
-
-    @Column(name = "isPrivate")
     private String isPrivate;
-
-    @Column(name = "isPined")
     private boolean isPined;
+    private String postBy;
+    private String postTime;
 
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private User user;
-
-    public Post() {
+    public PostDto() {
     }
 
     public Long getPostId() {
@@ -47,14 +26,6 @@ public class Post {
 
     public void setPostBody(String postBody) {
         this.postBody = postBody;
-    }
-
-    public LocalDateTime getPostTime() {
-        return postTime;
-    }
-
-    public void setPostTime(LocalDateTime postTime) {
-        this.postTime = postTime;
     }
 
     public String getPostLocation() {
@@ -81,12 +52,19 @@ public class Post {
         isPined = pined;
     }
 
-    public User getUser() {
-        return user;
+    public String getPostBy() {
+        return postBy;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPostBy(String postBy) {
+        this.postBy = postBy;
     }
 
+    public String getPostTime() {
+        return postTime;
+    }
+
+    public void setPostTime(String postTime) {
+        this.postTime = postTime;
+    }
 }
