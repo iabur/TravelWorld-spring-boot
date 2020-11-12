@@ -1,22 +1,27 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="common/header.jspf" %>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+<style>
+    a:hover {
+        color: gray;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: green;
+    }
+
+</style>
 <div class="container hero">
-    <style>
-        a:hover {
-            color: gray;
-            text-decoration: none;
-        }
 
-        a:visited {
-            color: green;
-        }
-
-    </style>
     <div class="container">
+
         <div class="row">
 
             <div style="width: 600px; margin-left: 230px">
+                <h1 style="font-family: Lobster, serif; color: #9fcdff">${userName}</h1>
                 <form:form action="${pageContext.request.contextPath}/savePost" modelAttribute="post">
                     <form:textarea path="postBody" placeholder="What are you up to?" class="form-control" rows="5"
                                    id="comment"></form:textarea>
@@ -48,8 +53,9 @@
                                             <div class="col-md-11">
                                                 <div class="media">
                                                     <div class="media-body">
-                                                        <a href="#" class="anchor-username"><h4 class="media-heading"
-                                                                                                style="color: yellow">${post.postBy}</h4>
+                                                        <a href="${pageContext.request.contextPath}/profile"
+                                                           class="anchor-username"><h4 class="media-heading"
+                                                                                       style="color: yellow; text-decoration: none;">${post.postBy}</h4>
                                                         </a>
                                                         <p class="anchor-time"
                                                            style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
