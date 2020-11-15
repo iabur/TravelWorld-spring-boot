@@ -2,6 +2,7 @@ package com.iabur.bs23.travel.service;
 
 import com.iabur.bs23.travel.dto.PostDto;
 import com.iabur.bs23.travel.dto.UserDto;
+import com.iabur.bs23.travel.exceptions.ResourceAlreadyExistsException;
 import com.iabur.bs23.travel.model.Post;
 import com.iabur.bs23.travel.repositories.PostRepository;
 import com.iabur.bs23.travel.repositories.UserRepository;
@@ -42,7 +43,12 @@ public class UserService implements UserDetailsService {
     public void create(UserDto userDto){
         com.iabur.bs23.travel.model.User user = new com.iabur.bs23.travel.model.User();
         user.setName(userDto.getFirstName()+" "+userDto.getLastName());
-        user.setEmail(userDto.getEmail());
+        if(userRepository.findByEmail(userDto.getEmail()).isEmpty()){
+            user.setEmail(userDto.getEmail());
+        }
+        else {
+            throw new ResourceAlreadyExistsException("This email already exist! Please try with a different email");
+        }
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         userRepository.save(user);
     }
