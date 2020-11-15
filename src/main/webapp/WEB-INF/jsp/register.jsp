@@ -20,8 +20,9 @@
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                    <div id="errorMessage" class="alert-danger"></div>
                                     <div class="card-body">
-                                        <form:form action="${pageContext.request.contextPath}/registration" modelAttribute="userInformation">
+                                        <form:form action="${pageContext.request.contextPath}/registration" modelAttribute="userInformation" id="check">
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -54,7 +55,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="form-group mt-4 mb-0 btn btn-primary btn-block">Create Account</button>
+                                            <button id="submit" class="form-group mt-4 mb-0 btn btn-primary btn-block">Create Account</button>
                                         </form:form>
                                     </div>
                                     <div class="card-footer text-center">
@@ -86,3 +87,46 @@
         <script src="${pageContext.request.contextPath}/registration/js/scripts.js"></script>
     </body>
 </html>
+
+<script>
+    $("#check").submit(function() {
+        var errorMassage = '';
+        var fieldMissing = '';
+        if ($('#inputFirstName').val() == '') {
+            fieldMissing += '<br> First Name';
+        }
+        if ($('#inputLastName').val() == '') {
+            fieldMissing += '<br> Last Name';
+        }
+        if ($('#inputEmailAddress').val() == '') {
+            fieldMissing += '<br> Email';
+        }
+
+        if ($('#inputPassword').val() == '') {
+            fieldMissing += '<br> Password';
+        }
+        if ($('#inputConfirmPassword').val() == '') {
+            fieldMissing += '<br> Confirm Password';
+        }
+        if (fieldMissing != '') {
+            errorMassage +=
+                '<p>The following field are missing: </p> ' + fieldMissing;
+        }
+
+        if ($('#inputPassword').val() != $('#inputConfirmPassword').val()) {
+            errorMassage += "<p> Password does not match </br>";
+        }
+
+        const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!$('#inputEmailAddress').val().match(mailformat)) {
+            errorMassage += "<p> Invalid email address! </br>";
+        }
+        if (errorMassage != '') {
+            $('#errorMessage').html(errorMassage);
+            $('#errorMessage').show();
+        }
+        if(errorMassage != ''){
+            return false;
+        }
+    });
+</script>
