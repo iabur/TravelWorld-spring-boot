@@ -35,54 +35,40 @@
                     </form:select>
                     <button style="margin-top: 10px;" class="btn btn-success pull-right">Post</button>
                 </form:form>
-                <hr style="height:2px;border-width:0;color:gray;background-color:gray; margin-top: 30px;">
+                <br><br>
+                <hr style="border: 4px dotted #926e6e; border-radius: 2px">
                 <%--starting previous post section--%>
 
-                <div class="container">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <c:forEach items="${allPost}" var="post">
-                                <div class="panel-body">
-                                    <section class="post-heading">
-                                        <div class="row">
-                                            <div class="col-md-11">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <a href="#" class="anchor-username"><h4 class="media-heading"
-                                                                                                style="color: yellow">${post.postBy}</h4>
-                                                        </a>
-                                                        <p class="anchor-time"
-                                                           style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
-                                                    </div>
-                                                    <div class="float-right">
-                                                        <button class="btn"><a href="#"><i class="fa fa-pencil-square-o"
-                                                                                           aria-hidden="true"></i></a>
-                                                        </button>
-                                                    </div>
-                                                    <div class="float-right">
-                                                        <button class="btn"><a href="#"><i
-                                                                class="fas fa-map-pin"></i></a></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                                            </div>
+                <c:forEach items="${allPost}" var="post">
+                    <div class="panel-body">
+                        <section class="post-heading">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <a href="${pageContext.request.contextPath}/profile"
+                                               class="anchor-username"><h4 class="media-heading"
+                                                                           style="color: yellow; text-decoration: none;">${post.postBy}</h4>
+                                            </a>
+                                            <p class="anchor-time"
+                                               style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
                                         </div>
-                                    </section>
-                                    <section class="post-body">
-                                        <p style="color: white">${post.postBody}</p>
-                                    </section>
-                                    <section class="post-footer">
-                                        <hr>
-
-                                    </section>
+                                    </div>
                                 </div>
-                            </c:forEach>
+                                <div class="col-md-1">
+                                    <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="post-body">
+                            <p style="color: white">${post.postBody}</p>
+                        </section>
+                        <section class="post-footer">
+                            <hr>
 
-                        </div>
+                        </section>
                     </div>
-                </div>
+                </c:forEach>
 
                 <%--end previous post section--%>
             </div>

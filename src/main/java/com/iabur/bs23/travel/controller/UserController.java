@@ -39,6 +39,7 @@ public class UserController {
         model.addAttribute("location", locationRepository.findAll());
         model.addAttribute("post",new PostDto());
         model.addAttribute("allPost", userService.allPost(authentication));
+        model.addAttribute("pinedPost", userService.findPinedPost());
         return "profile";
     }
 }

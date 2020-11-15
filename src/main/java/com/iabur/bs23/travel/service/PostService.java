@@ -34,6 +34,7 @@ public class PostService {
         post.setPostTime(now);
         post.setIsPrivate(postDto.getIsPrivate());
         post.setUser(userRepository.findByEmail(authentication.getName()).get());
+        post.setIsPined("false");
         postRepository.save(post);
     }
 

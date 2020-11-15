@@ -24,7 +24,7 @@ public class Post {
     private String isPrivate;
 
     @Column(name = "isPined")
-    private boolean isPined;
+    private String isPined;
 
     @ManyToOne
     @JoinColumn(name="user_id")
@@ -73,12 +73,12 @@ public class Post {
         this.isPrivate = isPrivate;
     }
 
-    public boolean isPined() {
+    public String getIsPined() {
         return isPined;
     }
 
-    public void setPined(boolean pined) {
-        isPined = pined;
+    public void setIsPined(String isPined) {
+        this.isPined = isPined;
     }
 
     public User getUser() {

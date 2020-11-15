@@ -1,8 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="common/header.jspf" %>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
 <style>
     a:hover {
         color: gray;
@@ -39,56 +38,87 @@
                         <form:option value="true" label="private"/>
                     </form:select>
                     <button style="margin-top: 10px;" class="btn btn-success pull-right">Post</button>
+                    <br> <br>
+                    <hr style="border: 4px dotted #926e6e; border-radius: 2px">
                 </form:form>
-                <hr style="height:2px;border-width:0;color:gray;background-color:gray; margin-top: 30px;">
+
                 <%--starting previous post section--%>
+                <%--start pined post section--%>
+                <c:forEach var="post" items="${pinedPost}">
+                <div class="panel-body text-info" >
+                    <section class="post-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <a href="${pageContext.request.contextPath}/profile"
+                                           class="anchor-username"><h4 class="media-heading"
+                                                                       style="color: yellow; text-decoration: none;">${post.postBy}</h4>
+                                        </a>
+                                        <p class="anchor-time"
+                                           style="color: #7abaff; font-size: smaller">${post.postTime}, ${post.postLocation}</p>
+                                    </div>
 
-                <div class="container">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <c:forEach items="${allPost}" var="post">
-                                <div class="panel-body">
-                                    <section class="post-heading">
-                                        <div class="row">
-                                            <div class="col-md-11">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <a href="${pageContext.request.contextPath}/profile"
-                                                           class="anchor-username"><h4 class="media-heading"
-                                                                                       style="color: yellow; text-decoration: none;">${post.postBy}</h4>
-                                                        </a>
-                                                        <p class="anchor-time"
-                                                           style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
-                                                    </div>
-                                                    <div class="float-right">
-                                                        <button class="btn"><a href="#"><i class="fa fa-pencil-square-o"
-                                                                                           aria-hidden="true"></i></a>
-                                                        </button>
-                                                    </div>
-                                                    <div class="float-right">
-                                                        <button class="btn"><a href="#"><i
-                                                                class="fas fa-map-pin"></i></a></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                                            </div>
-                                        </div>
-                                    </section>
-                                    <section class="post-body">
-                                        <p style="color: white">${post.postBody}</p>
-                                    </section>
-                                    <section class="post-footer">
-                                        <hr>
-
-                                    </section>
+                                    <div class="float-right">
+                                       <span class="badge badge-info">pined post</span>
+                                    </div>
                                 </div>
-                            </c:forEach>
-
+                            </div>
+                            <div class="col-md-1">
+                                <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                            </div>
                         </div>
-                    </div>
+                    </section>
+                    <section class="post-body">
+                        <p style="color: white">${post.postBody}</p>
+                    </section>
+                    <section class="post-footer">
+                        <hr>
+
+                    </section>
                 </div>
+                </c:forEach>
+                <%--end pined post section--%>
+
+                <c:forEach items="${allPost}" var="post">
+                    <div class="panel-body">
+                        <section class="post-heading">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <a href="${pageContext.request.contextPath}/profile"
+                                               class="anchor-username"><h4 class="media-heading"
+                                                                           style="color: yellow; text-decoration: none;">${post.postBy}</h4>
+                                            </a>
+                                            <p class="anchor-time"
+                                               style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
+                                        </div>
+                                        <div class="float-right">
+                                            <button class="btn"><a href="#"><i class="fa fa-pencil-square-o"
+                                                                               aria-hidden="true"></i></a>
+                                            </button>
+                                        </div>
+                                        <div class="float-right">
+                                            <button class="btn"><a href="#"><i
+                                                    class="fas fa-map-pin"></i></a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="#"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="post-body">
+                            <p style="color: white">${post.postBody}</p>
+                        </section>
+                        <section class="post-footer">
+                            <hr>
+
+                        </section>
+                    </div>
+                </c:forEach>
 
                 <%--end previous post section--%>
             </div>

@@ -67,4 +67,20 @@ public class UserService implements UserDetailsService {
         });
         return postDtos;
     }
+
+    public List<PostDto> findPinedPost(){
+        List<Post> post = postRepository.findAllByIsPined("true");
+        List<PostDto> pDtos = new ArrayList<>();
+        post.forEach(p -> {
+            PostDto postDto = new PostDto();
+            postDto.setPostBody(p.getPostBody());
+            postDto.setPostLocation(p.getPostLocation());
+            postDto.setPostBy(p.getUser().getName());
+            PrettyTime pt = new PrettyTime();
+            String postedAt = pt.format(new Date(Timestamp.valueOf(p.getPostTime()).getTime()));
+            postDto.setPostTime(postedAt);
+            pDtos.add(postDto);
+        });
+        return pDtos;
+    }
 }
