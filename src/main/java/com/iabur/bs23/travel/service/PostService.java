@@ -66,8 +66,11 @@ public class PostService {
         postRepository.save(newPinPost);
     }
 
-    /*public void editPost(Long postId){
-        Post post = postRepository.findById(postId).get();
-
-    }*/
+    public void editPost(PostDto postDto){
+        Post editedPost = postRepository.findById(postDto.getPostId()).get();
+        editedPost.setIsPrivate(postDto.getIsPrivate());
+        editedPost.setPostLocation(postDto.getPostLocation());
+        editedPost.setPostBody(postDto.getPostBody());
+        postRepository.save(editedPost);
+    }
 }

@@ -92,10 +92,10 @@
                                                                            style="color: yellow; text-decoration: none;">${post.postBy}</h4>
                                             </a>
                                             <p class="anchor-time"
-                                               style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
+                                               style="color: #7abaff;font-size: smaller ">${post.postTime}, ${post.postLocation}</p>
                                         </div>
                                         <div class="float-right">
-                                            <button><a href="#"><i class="fa fa-pencil-square-o"
+                                            <button><a href="${pageContext.request.contextPath}/editPost?postId=${post.postId}"><i class="fa fa-pencil-square-o"
                                                                                aria-hidden="true"></i></a>
                                             </button>
                                         </div>
