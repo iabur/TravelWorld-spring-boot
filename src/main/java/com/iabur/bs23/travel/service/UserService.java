@@ -60,6 +60,7 @@ public class UserService implements UserDetailsService {
             postDto.setPostBody(post.getPostBody());
             postDto.setPostLocation(post.getPostLocation());
             postDto.setPostBy(post.getUser().getName());
+            postDto.setPostId(post.getPostId());
             PrettyTime p = new PrettyTime();
             String postedAt = p.format(new Date(Timestamp.valueOf(post.getPostTime()).getTime()));
             postDto.setPostTime(postedAt);
@@ -68,8 +69,8 @@ public class UserService implements UserDetailsService {
         return postDtos;
     }
 
-    public List<PostDto> findPinedPost(){
-        List<Post> post = postRepository.findAllByIsPined("true");
+    public List<PostDto> findPinedPost(Authentication authentication){
+        List<Post> post = postRepository.findAllByIsPinedAndUser("true", userRepository.findByEmail(authentication.getName()).get());
         List<PostDto> pDtos = new ArrayList<>();
         post.forEach(p -> {
             PostDto postDto = new PostDto();

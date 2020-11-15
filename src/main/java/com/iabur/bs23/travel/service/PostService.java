@@ -53,4 +53,21 @@ public class PostService {
         });
         return postDtos;
     }
+
+    public void togglePinPost(String userEmail, Long postId){
+        List<Post> pinPostList = postRepository.findAllByIsPinedAndUser("true", userRepository.findByEmail(userEmail).get());
+        pinPostList.forEach(post -> {
+            Post post1 = postRepository.findById(post.getPostId()).get();
+            post1.setIsPined("false");
+            postRepository.save(post1);
+        });
+        Post newPinPost = postRepository.findByPostIdAndUser(postId, userRepository.findByEmail(userEmail).get());
+        newPinPost.setIsPined("true");
+        postRepository.save(newPinPost);
+    }
+
+    /*public void editPost(Long postId){
+        Post post = postRepository.findById(postId).get();
+
+    }*/
 }

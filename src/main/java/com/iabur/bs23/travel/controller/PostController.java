@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
@@ -21,4 +22,10 @@ public class PostController {
         postService.save(postDto, authentication);
         return "redirect:/";
     }
+
+    /*@PostMapping("/editPost")
+    public String editPost(@RequestParam(name = "postId") Long postId) {
+        postService.editPost(postId);
+        return "redirect:/";
+    }*/
 }

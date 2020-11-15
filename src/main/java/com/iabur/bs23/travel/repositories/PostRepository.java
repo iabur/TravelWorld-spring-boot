@@ -14,5 +14,6 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findPostByIsPrivate(String p);
     List<Post> findAllByUser(User user);
-    List<Post> findAllByIsPined(String pined);
+    List<Post> findAllByIsPinedAndUser(String pined, User user);
+    Post findByPostIdAndUser(Long postId, User user);
 }

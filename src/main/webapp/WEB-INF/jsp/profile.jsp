@@ -20,7 +20,7 @@
         <div class="row">
 
             <div style="width: 600px; margin-left: 230px">
-                <h1 style="font-family: Lobster, serif; color: #9fcdff">${userName}</h1>
+                <h1 style="font-family: Lobster, serif; color: #9fcdff">${user.name}</h1>
                 <form:form action="${pageContext.request.contextPath}/savePost" modelAttribute="post">
                     <form:textarea path="postBody" placeholder="What are you up to?" class="form-control" rows="5"
                                    id="comment"></form:textarea>
@@ -95,12 +95,12 @@
                                                style="color: #7abaff">${post.postTime}, ${post.postLocation}</p>
                                         </div>
                                         <div class="float-right">
-                                            <button class="btn"><a href="#"><i class="fa fa-pencil-square-o"
+                                            <button><a href="#"><i class="fa fa-pencil-square-o"
                                                                                aria-hidden="true"></i></a>
                                             </button>
                                         </div>
                                         <div class="float-right">
-                                            <button class="btn"><a href="#"><i
+                                            <button><a href="${pageContext.request.contextPath}/pinPost?userEmail=${user.email}&postId=${post.postId}"><i
                                                     class="fas fa-map-pin"></i></a></button>
                                         </div>
                                     </div>
