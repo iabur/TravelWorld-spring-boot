@@ -67,6 +67,7 @@ public class UserService implements UserDetailsService {
             postDto.setPostLocation(post.getPostLocation());
             postDto.setPostBy(post.getUser().getName());
             postDto.setPostId(post.getPostId());
+            postDto.setUserId(post.getUser().getUserId());
             PrettyTime p = new PrettyTime();
             String postedAt = p.format(new Date(Timestamp.valueOf(post.getPostTime()).getTime()));
             postDto.setPostTime(postedAt);
@@ -89,5 +90,23 @@ public class UserService implements UserDetailsService {
             pDtos.add(postDto);
         });
         return pDtos;
+    }
+
+    public List<PostDto> viewUserProfile(Long userId) {
+        List<PostDto> userPostDto = new ArrayList<>();
+        List<Post> userPosts = postRepository.findAllByUser(userRepository.findById(userId).get());
+        userPosts.forEach(post -> {
+            PostDto postDto = new PostDto();
+            postDto.setPostBody(post.getPostBody());
+            postDto.setPostLocation(post.getPostLocation());
+            postDto.setPostBy(post.getUser().getName());
+            postDto.setPostId(post.getPostId());
+            postDto.setUserId(post.getUser().getUserId());
+            PrettyTime p = new PrettyTime();
+            String postedAt = p.format(new Date(Timestamp.valueOf(post.getPostTime()).getTime()));
+            postDto.setPostTime(postedAt);
+            userPostDto.add(postDto);
+        });
+        return userPostDto;
     }
 }

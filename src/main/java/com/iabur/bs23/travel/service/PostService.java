@@ -46,6 +46,7 @@ public class PostService {
             postDto.setPostBody(post.getPostBody());
             postDto.setPostLocation(post.getPostLocation());
             postDto.setPostBy(post.getUser().getName());
+            postDto.setUserId(post.getUser().getUserId());
             PrettyTime p = new PrettyTime();
             String postedAt = p.format(new Date(Timestamp.valueOf(post.getPostTime()).getTime()));
             postDto.setPostTime(postedAt);

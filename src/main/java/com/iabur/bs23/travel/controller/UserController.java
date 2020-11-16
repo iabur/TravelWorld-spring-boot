@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -26,14 +23,14 @@ public class UserController {
     private PostService postService;
 
     @GetMapping("/registration")
-    public String registerNewUser(Model model){
+    public String registerNewUser(Model model) {
         model.addAttribute("userInformation", new UserDto());
         return "/register";
     }
 
 
     @PostMapping("/registration")
-    public String registerNewUser(@ModelAttribute(name = "userInformation") UserDto userDto, Model model){
+    public String registerNewUser(@ModelAttribute(name = "userInformation") UserDto userDto, Model model) {
         userService.create(userDto);
         return "redirect:/login";
     }
@@ -42,15 +39,21 @@ public class UserController {
     public String showProfile(Model model, Authentication authentication) {
         model.addAttribute("user", userService.findCurrentUser(authentication));
         model.addAttribute("location", locationRepository.findAll());
-        model.addAttribute("post",new PostDto());
+        model.addAttribute("post", new PostDto());
         model.addAttribute("allPost", userService.allPost(authentication));
         model.addAttribute("pinedPost", userService.findPinedPost(authentication));
         return "profile";
     }
 
     @GetMapping("/pinPost")
-    public String pinPostToggle(Model model, @RequestParam(name = "userEmail") String userEmail, @RequestParam(name = "postId") Long postId){
+    public String pinPostToggle(Model model, @RequestParam(name = "userEmail") String userEmail, @RequestParam(name = "postId") Long postId) {
         postService.togglePinPost(userEmail, postId);
         return "redirect:/profile";
+    }
+
+    @GetMapping("/userProfile")
+    public String userProfile(@RequestParam(name = "userId") Long userId, Model model){
+        model.addAttribute("userPost", userService.viewUserProfile(userId));
+        return "userProfile";
     }
 }

@@ -8,6 +8,7 @@ public class PostDto {
     private boolean isPined;
     private String postBy;
     private String postTime;
+    private Long userId;
 
     public PostDto() {
     }
@@ -66,5 +67,13 @@ public class PostDto {
 
     public void setPostTime(String postTime) {
         this.postTime = postTime;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
